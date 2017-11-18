@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+*.json.zip
+/.vscode
+/src/tests/bundle.js
+/node_modules
+package-lock.json
+yarn.lock
