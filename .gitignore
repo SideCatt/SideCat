@@ -5,5 +5,4 @@
 /src/tests/bundle.js
 /node_modules
 package-lock.json
-yarn.lock
 .idea
