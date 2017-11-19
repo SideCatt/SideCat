@@ -18,7 +18,6 @@ module.exports = {
 	devtool: 'inline-source-map',
 	entry: [
 		'babel-polyfill',
-		'react-hot-loader/patch',
 		path.join(srcDir, 'js', 'index.js')
 	],
 	output: {
@@ -27,6 +26,10 @@ module.exports = {
 		publicPath: '/'
 	},
 	resolve: {
+		alias: {
+			js: path.join(srcDir, 'js'),
+			sass: path.join(srcDir, 'sass')
+		},
 		extensions: [ '.js', '.jsx' ]
 	},
 	module: {
@@ -35,20 +38,10 @@ module.exports = {
 				include: srcDir,
 				test: /\.(jsx|js)?$/,
 				exclude: /node_modules/,
-				loaders: [
-					'babel-loader',
-					'react-hot-loader'
-				]
+				loader: 'babel-loader'
 			}
 		]
 	},
-	resolve: {
-		alias: {
-			js: path.join(srcDir, 'js'),
-			sass: path.join(srcDir, 'sass')
-		}
-	},
-
 	plugins: [
 		HtmlWebpackPluginConfig,
 		new webpack.NamedModulesPlugin(),

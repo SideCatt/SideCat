@@ -5,7 +5,7 @@ export default class Example extends BaseComponent {
 	render() {
 		return (
 			<div className='sidecat-container'>
-				carne a suh dude
+				carne a suh duuude
 			</div>
 		);
 	}
