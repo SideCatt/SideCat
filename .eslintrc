@@ -188,8 +188,8 @@
 			}
 		} ],
 		"react/wrap-multilines": [ 1, {
-			"declaration": true, 
-			"assignment": true, 
+			"declaration": true,
+			"assignment": true,
 			"return": true
 		} ]
 	},
