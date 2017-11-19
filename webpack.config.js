@@ -7,14 +7,16 @@ const srcDir = path.join(__dirname, '/src');
 const distDir = path.join(__dirname, '/dist/');
 const webpack = require('webpack');
 
+function getVendorFileNames() {
+	const packageJson = require('./package.json');
+
+	return Object.keys(packageJson.dependencies);
+}
+
 module.exports = {
 	entry: {
 		app: path.join(srcDir, 'js', 'index.js'),
-		vendor: [
-			'babel-polyfill',
-			'react',
-			'react-dom'
-		]
+		vendor: getVendorFileNames()
 	},
 	devServer: {
 		contentBase: distDir,
