@@ -1,4 +1,4 @@
-import BaseComponent from '../extensions/BaseComponent';
+import BaseComponent from 'js/extensions/BaseComponent';
 import React from 'react';
 
 export default class Example extends BaseComponent {
