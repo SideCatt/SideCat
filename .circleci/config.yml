@@ -1,22 +1,26 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/circleci-sidecat
     docker:
-      - image: circleci/node:8.9.1
+      - image: circleci/node:8
     steps:
       - checkout
+
+      # Restore yarn cache
+      - type: cache-restore
+        name: Restore yarn cache
+        key: sidecat-yarn-{{ checksum "yarn.lock" }}
+
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+          name: Yarn Install
+          command: yarn install
+
+      # Store Cache
+      - type: cache-save
+        key: sidecat-yarn-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.yarn-cache
       - run:
           name: test
-          command: npm run test
+          command: yarn run test
