@@ -41,6 +41,15 @@ module.exports = {
 				use: [
 					{ loader: 'babel-loader' }
 				]
+			},
+			{
+				exclude: /node_modules/,
+				include: srcDir,
+				test: /\.(jsx|js)?$/,
+				enforce: 'pre',
+				use: [
+					{ loader: 'eslint-loader' }
+				]
 			}
 		]
 	},
