@@ -1,0 +1,35 @@
+.sidecat-slider {
+	cursor: pointer;
+	height: 20px;
+	position: relative;
+	width: 150px;
+
+	.cover,
+	.track {
+		height: 7px;
+		position: absolute;
+	}
+		
+	.cover {
+		background: brown;
+		height: 7px;
+	}
+
+	.knob {
+		background: black;
+		border-radius: 50%;
+		height: 18px;
+		margin-left: -9px;
+		width: 18px;
+	}
+
+	.track {
+		background: gray;
+		top: 5px;
+		width: 100%;
+	}
+}
+
+.sidecat-checkbox {
+	font-size: 25px;
+}

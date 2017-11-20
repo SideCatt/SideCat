@@ -13,3 +13,20 @@ export function sideCatClassnames(name, ...args) {
 
 	return classnames(sideCatClassName, ...args);
 }
+
+/**
+ * Generates slider inline CSS properties for sidecat slider components
+ * @param {number|string} value value that needs to be converted to inline css strings
+ */
+export function generateSliderInline(value) {
+	const translateValue = `translateX(${value}px)`;
+	const knobPosition = {
+		MozTransform: translateValue,
+		msTransform: translateValue,
+		transform: translateValue,
+		WebkitTransform: translateValue
+	};
+	const trackCoverWidth = { width: `${value}px` };
+
+	return { knobPosition, trackCoverWidth };
+}
