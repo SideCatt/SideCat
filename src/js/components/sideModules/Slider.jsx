@@ -1,11 +1,11 @@
 import React from 'react';
 import BaseComponent from 'js/extensions/BaseComponent';
-import classnames from 'classnames';
+import { sideCatClassnames } from 'js/lib/css';
 
 class Slider extends BaseComponent {
 	render() {
 		const disabled = false;
-		const sliderClassnames = classnames('sidecat-slider', {
+		const sliderClassnames = sideCatClassnames('slider', {
 			disabled
 		});
 		const trackCoverWidth = 0;

@@ -12,7 +12,7 @@ class BaseComponent extends React.Component {
 	/**
 	 * For binding methods to class instance
 	 */
-	bind(...methods) {
+	bindMethods(...methods) {
 		methods.forEach((method) => {
 			this[ method ] = this[ method ].bind(this);
 		});
