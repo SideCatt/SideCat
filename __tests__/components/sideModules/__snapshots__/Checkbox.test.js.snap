@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox changes the class when it is checked by default 1`] = `
+<div
+  className="sidecat-checkbox checked"
+>
+  <input
+    checked={true}
+    disabled={false}
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <label>
+    foo
+  </label>
+</div>
+`;

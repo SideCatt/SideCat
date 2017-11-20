@@ -36,7 +36,7 @@ class Checkbox extends BaseComponent {
 	}
 
 	render() {
-		const { defaultChecked, disabled } = this.props;
+		const { disabled } = this.props;
 		const { checked } = this.state;
 		const checkboxClassnames = sideCatClassnames('checkbox', {
 			checked,
@@ -46,7 +46,6 @@ class Checkbox extends BaseComponent {
 		return (
 			<div className={ checkboxClassnames }>
 				<input
-					defaultChecked={ defaultChecked }
 					checked={ checked }
 					disabled={ disabled }
 					onChange={ this.handleChange }

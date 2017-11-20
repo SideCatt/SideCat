@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import { SIDE_CAT_CSS } from 'js/constants/CSS';
 
 /**
- * Prepend 'side-cat' to designated name
+ * Prepend 'sidecat' to designated name
  * and apply additional arguments to classname function
  * @param   {string} name Name of main class
  * @param   {any}    args Arguments following classnames params structure
