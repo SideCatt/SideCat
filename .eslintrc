@@ -187,10 +187,11 @@
 				]
 			}
 		} ],
-		"react/wrap-multilines": [ 1, {
+		"react/jsx-wrap-multilines": [ 1, {
 			"declaration": true,
 			"assignment": true,
-			"return": true
+			"return": true,
+			"arrow": true
 		} ]
 	},
 
