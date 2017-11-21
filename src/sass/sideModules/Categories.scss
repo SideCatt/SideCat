@@ -1,0 +1,13 @@
+.sidecat-categories {
+	border: 1px solid black;
+	display: inline-block;
+	padding: 15px;
+
+	.sidecat-category {
+		font-size: 14px;
+
+		&.active {
+			font-weight: bold;
+		}
+	}
+}

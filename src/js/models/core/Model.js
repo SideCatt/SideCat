@@ -42,6 +42,10 @@ class Model {
 			this.constructor.name
 		);
 	}
+
+	serialize() {
+		return this.dataStructure;
+	}
 }
 
 SideCatProps.defineStructure(Model, {});

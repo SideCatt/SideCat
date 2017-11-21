@@ -1,4 +1,5 @@
 import BaseComponent from 'js/extensions/BaseComponent';
+import Categories from 'js/components/sideModules/Categories';
 import Checkbox from 'js/components/sideModules/CheckBox';
 import Models from 'js/models';
 import PropTypes from 'prop-types';
@@ -12,14 +13,31 @@ class Sidebar extends BaseComponent {
 	}
 
 	/**
+	 * Renders Categories component based on CategoriesModel
+	 * @param   {CategoriesModel} structItem Categories model structure config
+	 * @returns {Categories}                 Returns Categories Component
+	 */
+	renderCategories(structItem) {
+		const { handleCategoryChange } = this.props;
+		const { active, name, categories } = structItem.serialize();
+
+		return (
+			<Categories
+				key={ name }
+				active={ active }
+				categories={ categories }
+				onChange={ this.bindParams(handleCategoryChange, name)} />
+		);
+	}
+
+	/**
 	 * Renders checkbox based on CheckBoxModel
 	 * @param   {CheckBoxModel} structItem CheckBox model structure configuration
 	 * @returns {Checkbox}                 Returns CheckBox Component
 	 */
 	renderCheckBox(structItem) {
 		const { handleCheckBoxChange } = this.props;
-		const { dataStructure } = structItem;
-		const { label, name } = dataStructure;
+		const { label, name } = structItem.serialize();
 
 		return (
 			<Checkbox
@@ -40,12 +58,11 @@ class Sidebar extends BaseComponent {
 			handleSliderDragEnd,
 			valueState
 		} = this.props;
-		const { dataStructure } = structItem;
 		const {
 			max,
 			min,
 			name
-		} = dataStructure;
+		} = structItem.serialize();
 		const value = valueState[ name ];
 
 		return (
@@ -64,6 +81,8 @@ class Sidebar extends BaseComponent {
 
 		return structList.map((structItem) => {
 			switch (structItem.constructor.Structure) {
+				case Models.CategoriesModel.Structure:
+					return this.renderCategories(structItem);
 				case Models.CheckBoxModel.Structure:
 					return this.renderCheckBox(structItem);
 				case Models.SliderModel.Structure:
