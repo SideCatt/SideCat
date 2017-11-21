@@ -14,8 +14,14 @@ export default class Example extends BaseComponent {
 					label='foo'
 					onChange={ (e) => console.log(e) } />
 				<Slider
-					onDragChange={ function () {} }
-					onDragEnd={ function () {} }
+					onDragChange={ () => {} }
+					onDragEnd={ () => {} }
+					max={ 100 }
+					min={ 0 }/>
+				<Slider
+					defaultValue={ 50 }
+					onDragChange={ () => {} }
+					onDragEnd={ () => {} }
 					max={ 100 }
 					min={ 0 }/>
 			</div>

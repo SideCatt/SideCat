@@ -15,18 +15,38 @@ export function sideCatClassnames(name, ...args) {
 }
 
 /**
- * Generates slider inline CSS properties for sidecat slider components
- * @param {number|string} value value that needs to be converted to inline css strings
+ * Returns object containing a width property and a px sizing as specified by value
+ * @param  {number|string} value Size of inline CSS width
+ * @return {object}              Object containing modified width value in pixels
  */
-export function generateSliderInline(value) {
+export function getWidthStyle(value) {
+	return { width: `${value}px` };
+}
+
+/**
+ * Transforms a string value into an object containing transform CSS
+ * @param  {number|string} value Translation distance value
+ * @return {object}              Object containing Moz, ms, webkit, and standard transform values
+ */
+export function generateTranslateXCSS(value) {
 	const translateValue = `translateX(${value}px)`;
-	const knobPosition = {
+
+	return {
 		MozTransform: translateValue,
 		msTransform: translateValue,
 		transform: translateValue,
 		WebkitTransform: translateValue
 	};
-	const trackCoverWidth = { width: `${value}px` };
+}
 
-	return { knobPosition, trackCoverWidth };
+/**
+ * returns slider inline CSS properties for sidecat slider components
+ * @param  {number|string} value Value that needs to be converted to inline css strings
+ * @return {object}              Object containing knobPostion (transform properties) and trackCoverWidth (width property)
+ */
+export function generateSliderInline(value) {
+	return {
+		knobPosition: generateTranslateXCSS(value),
+		trackCoverWidth: getWidthStyle(value)
+	};
 }
