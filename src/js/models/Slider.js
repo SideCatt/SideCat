@@ -69,7 +69,7 @@ const structure = [
      dataStructure={ structure }>
  */
 
-// ------------------------------------------- Inside Slider
+// ------------------------------------------- Inside Sidebar
 // buildSidebarComponents() {
 structure.map((struct) => {
 	switch (struct.Structure) {
@@ -90,4 +90,3 @@ structure.map((struct) => {
 	return Object.assign({}, prevQuery, updateQuery);
 
 
-	
