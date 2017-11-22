@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider changes the slider position when it is passed a value 1`] = `
+<div
+  className="sidecat-slider"
+>
+  <div
+    className="slider"
+    onMouseDown={[Function]}
+  >
+    <div
+      className="track"
+    >
+      <div
+        className="cover"
+        style={
+          Object {
+            "width": "0px",
+          }
+        }
+      />
+    </div>
+    <div
+      className="knob"
+      style={
+        Object {
+          "MozTransform": "translateX(0px)",
+          "WebkitTransform": "translateX(0px)",
+          "msTransform": "translateX(0px)",
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+  </div>
+</div>
+`;

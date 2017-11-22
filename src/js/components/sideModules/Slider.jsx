@@ -5,7 +5,8 @@ import BaseComponent from 'js/extensions/BaseComponent';
 import { getRelativeCursorPosition } from 'js/lib/dom';
 import {
 	boundsCheckValue,
-	getIntervalValue
+	getIntervalValue,
+	translateValueToPosition
 } from 'js/lib/math';
 import { INPUT } from 'js/constants/INPUT';
 import PropTypes from 'prop-types';
@@ -17,8 +18,8 @@ class Slider extends BaseComponent {
 		super(props);
 
 		const state = {
-			drag: false,
-			value: 0
+			value: null,
+			drag: false
 		};
 
 		this.eventsAdded = false;
@@ -27,7 +28,28 @@ class Slider extends BaseComponent {
 	}
 
 	componentDidMount() {
+		const { slider } = this.refs;
+		const {
+			defaultValue,
+			interval,
+			max,
+			min,
+			value
+		} = this.props;
+		const sliderValue = value || defaultValue || 0;
+
 		this.registerEventListeners();
+
+		if (slider) {
+			this.setState({
+				value: translateValueToPosition(sliderValue, slider.clientWidth, { max, min, interval })
+			});
+		}
+		else {
+			this.setState({
+				value: 0
+			});
+		}
 	}
 
 	componentDidUpdate() {
@@ -36,11 +58,17 @@ class Slider extends BaseComponent {
 
 	// Check incoming props for changes to calculate pixel values and store them in state
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.value && nextProps.value !== this.state.value) {
-			const { interval } = this.props;
+		const { slider } = this.refs;
+
+		if (nextProps.value && nextProps.value !== this.state.value && slider) {
+			const {
+				interval,
+				max,
+				min
+			} = this.props;
 
 			this.setState({
-				value: getIntervalValue(nextProps.value, interval)
+				value: translateValueToPosition(nextProps.value, slider.clientWidth, { max, min, interval })
 			});
 		}
 	}
@@ -227,6 +255,7 @@ class Slider extends BaseComponent {
 			trackCoverWidth
 		} = generateSliderInline(value);
 		const sliderClassnames = sideCatClassnames('slider', {
+			'pre-render': value === null,
 			disabled
 		});
 
