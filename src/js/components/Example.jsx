@@ -7,9 +7,25 @@ import Checkbox from 'js/components/sideModules/Checkbox';
 import Slider from 'js/components/sideModules/Slider';
 
 export default class Example extends BaseComponent {
+	constructor(props) {
+		super(props);
+
+		this.state = { sliderValue: 50 };
+		this.bindMethods('setValueTest');
+	}
+
+	setValueTest() {
+		this.setState({
+			sliderValue: 100
+		});
+	}
+
 	render() {
+		const { sliderValue } = this.state;
+
 		return (
 			<div className='sidecat-container'>
+				<button onClick={ this.setValueTest }> Test slider value passing </button>
 				<Checkbox
 					label='foo'
 					onChange={ (e) => console.log(e) } />
@@ -19,7 +35,7 @@ export default class Example extends BaseComponent {
 					max={ 100 }
 					min={ 0 }/>
 				<Slider
-					defaultValue={ 50 }
+					value={ sliderValue }
 					onDragChange={ () => {} }
 					onDragEnd={ () => {} }
 					max={ 100 }
