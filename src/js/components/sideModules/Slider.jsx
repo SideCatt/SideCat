@@ -30,26 +30,17 @@ class Slider extends BaseComponent {
 	componentDidMount() {
 		const { slider } = this.refs;
 		const {
-			defaultValue,
 			interval,
 			max,
 			min,
-			value
+			value = 0
 		} = this.props;
-		const sliderValue = value || defaultValue || 0;
+		const sliderValue = slider ? translateValueToPosition(value, slider.clientWidth, { max, min, interval }) : 0
 
 		this.registerEventListeners();
-
-		if (slider) {
-			this.setState({
-				value: translateValueToPosition(sliderValue, slider.clientWidth, { max, min, interval })
-			});
-		}
-		else {
-			this.setState({
-				value: 0
-			});
-		}
+		this.setState({
+			value: sliderValue
+		});
 	}
 
 	componentDidUpdate() {
@@ -60,7 +51,7 @@ class Slider extends BaseComponent {
 	componentWillReceiveProps(nextProps) {
 		const { slider } = this.refs;
 
-		if (nextProps.value && nextProps.value !== this.state.value && slider) {
+		if (nextProps.value && nextProps.value !== this.props.value && slider) {
 			const {
 				interval,
 				max,
