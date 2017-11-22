@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideCatProps.checkPropTypes should property throw error properly 1`] = `"Invalid \`JestTest\` structure: type String supplied to \`foo\`, expected Number."`;
