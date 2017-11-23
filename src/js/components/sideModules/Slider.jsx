@@ -35,7 +35,7 @@ class Slider extends BaseComponent {
 			min,
 			value = 0
 		} = this.props;
-		const sliderValue = slider ? translateValueToPosition(value, slider.clientWidth, { max, min, interval }) : 0
+		const sliderValue = slider ? translateValueToPosition(value, slider.clientWidth, { max, min, interval }) : 0;
 
 		this.registerEventListeners();
 		this.setState({

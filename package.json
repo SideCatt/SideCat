@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "jest"
+    "lint": "./node_modules/.bin/eslint --plugin react --max-warnings 0 src/js/**/*.{js,jsx} __tests__/**/*.{js,jsx}",
+    "lint-fix": "yarn run lint --fix",
+    "test": "yarn run lint && jest"
   },
   "jest": {
     "moduleFileExtensions": [
