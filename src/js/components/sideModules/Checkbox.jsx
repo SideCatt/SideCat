@@ -6,13 +6,21 @@ import { sideCatClassnames } from 'js/lib/css';
 class Checkbox extends BaseComponent {
 	constructor(props) {
 		super(props);
-		const { defaultChecked } = this.props;
+		const { checked } = this.props;
 
-		this.state = {
-			checked: defaultChecked
-		};
-
+		this.state = { checked };
 		this.bindMethods('handleChange');
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { checked: prevChecked } = this.props;
+		const { checked: nextChecked } = nextProps;
+
+		if (prevChecked !== nextChecked) {
+			this.setState({
+				checked: nextChecked
+			});
+		}
 	}
 
 	handleChange(event) {
@@ -59,20 +67,20 @@ class Checkbox extends BaseComponent {
 
 /**
  * propTypes definition
- * @type {boolean}  defaultChecked Indicator to default checked state
- * @type {boolean}  disabled       Indicator to if checkbox is disabled
- * @type {string}   label          Label of checkbox
- * @type {function} onChange       On change handler
+ * @type {boolean}  checked   Overridable checked state indicator
+ * @type {boolean}  disabled  Indicator to if checkbox is disabled
+ * @type {string}   label     Label of checkbox
+ * @type {function} onChange  On change handler
  */
 Checkbox.propTypes = {
-	defaultChecked: PropTypes.bool,
+	checked: PropTypes.bool,
 	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	onChange: PropTypes.func
 };
 
 Checkbox.defaultProps = {
-	defaultChecked: false,
+	checked: false,
 	disabled: false
 };
 
