@@ -2,7 +2,6 @@ import Model from 'js/models/core/Model';
 import SideCatProps from 'js/models/core/SideCatProps';
 
 /**
- /**
  * Creates a new CheckBoxModel
  * @class
  * @param {Object} dataStructure Structure defined for the Model
