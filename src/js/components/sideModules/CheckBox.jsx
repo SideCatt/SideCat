@@ -3,7 +3,10 @@ import BaseComponent from 'js/extensions/BaseComponent';
 import PropTypes from 'prop-types';
 import { sideCatClassnames } from 'js/lib/css';
 
-class Checkbox extends BaseComponent {
+/**
+ * @typedef {React.Component} CheckBox
+ */
+class CheckBox extends BaseComponent {
 	constructor(props) {
 		super(props);
 		const { checked } = this.props;
@@ -67,21 +70,21 @@ class Checkbox extends BaseComponent {
 
 /**
  * propTypes definition
- * @type {boolean}  checked   Overridable checked state indicator
- * @type {boolean}  disabled  Indicator to if checkbox is disabled
- * @type {string}   label     Label of checkbox
- * @type {function} onChange  On change handler
+ * @property {boolean}  checked   Overridable checked state indicator
+ * @property {boolean}  disabled  Indicator to if checkbox is disabled
+ * @property {string}   label     Label of checkbox
+ * @property {function} onChange  On change handler
  */
-Checkbox.propTypes = {
+CheckBox.propTypes = {
 	checked: PropTypes.bool,
 	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	onChange: PropTypes.func
 };
 
-Checkbox.defaultProps = {
+CheckBox.defaultProps = {
 	checked: false,
 	disabled: false
 };
 
-export default Checkbox;
+export default CheckBox;

@@ -2,7 +2,7 @@
 // Checkbox.test.js
 
 import React from 'react';
-import Checkbox from 'js/components/sideModules/Checkbox';
+import Checkbox from 'js/components/sideModules/CheckBox';
 import renderer from 'react-test-renderer';
 
 test('Checkbox changes the class when it is checked by default', () => {
