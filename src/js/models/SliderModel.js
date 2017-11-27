@@ -32,8 +32,7 @@ SideCatProps.defineStructure(SliderModel, {
 	label: SideCatProps.string,
 	name: SideCatProps.string,
 	max: SideCatProps.number,
-	min: SideCatProps.number,
-	value: SideCatProps.number.isOptional
+	min: SideCatProps.number
 });
 
 export default SliderModel;

@@ -8,6 +8,13 @@ test('SideCatProps should be able to validate primitive type plus object and arr
 	expect(SideCatProps.number.validate(10)).toBe(true);
 	expect(SideCatProps.object.validate({})).toBe(true);
 	expect(SideCatProps.string.validate('')).toBe(true);
+
+	expect(SideCatProps.array.validate(0)).toBe(false);
+	expect(SideCatProps.bool.validate('true')).toBe(false);
+	expect(SideCatProps.func.validate({})).toBe(false);
+	expect(SideCatProps.number.validate([])).toBe(false);
+	expect(SideCatProps.object.validate(4.3)).toBe(false);
+	expect(SideCatProps.string.validate(null)).toBe(false);
 });
 
 test('SideCatProps should be able to include Optional types', () => {

@@ -100,7 +100,6 @@ SideCatProps.checkPropTypes = function (structure, dataStructure, modelName) {
  */
 SideCatProps.defineStructure = function (modelClass, structure) {
 	Object.defineProperty(modelClass, 'Structure', {
-		writable: false,
 		value: Object.freeze(structure)
 	});
 };

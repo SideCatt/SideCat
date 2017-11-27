@@ -42,15 +42,6 @@ class Model {
 			this.constructor.name
 		);
 	}
-
-	/**
-	 * Serialize incoming value in a way acceptable by the designated data structure
-	 * @param  {any} value Value to serialize
-	 * @return {any}       Serialized value
-	 */
-	serialize(value) {
-		return value;
-	}
 }
 
 SideCatProps.defineStructure(Model, {});

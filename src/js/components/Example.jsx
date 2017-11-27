@@ -1,5 +1,5 @@
 /* global console */
-/* eslint-disable no-console */
+/* eslint-disable no-console, camelcase */
 
 import BaseComponent from 'js/extensions/BaseComponent';
 import Models from 'js/models';
@@ -20,8 +20,7 @@ const SliderTwo = new Models.SliderModel({
 	label: 'bar slider',
 	name: 'bar_slider',
 	max: 100,
-	min: 0,
-	value: 50
+	min: 0
 });
 
 const checkBoxHandler = (name, checked) => {
@@ -46,21 +45,17 @@ export default class Example extends BaseComponent {
 	constructor(props) {
 		super(props);
 
-		this.state = { sliderValue: 50 };
+		this.state = { bar_slider: 50 };
 		this.bindMethods('setValueTest');
 	}
 
 	setValueTest() {
 		this.setState({
-			sliderValue: 100
+			bar_slider: 100
 		});
 	}
 
 	render() {
-		const { sliderValue } = this.state;
-
-		SliderTwo.dataStructure.value = sliderValue;
-
 		return (
 			<div className='sidecat-container'>
 				<button onClick={ this.setValueTest }> Test slider value passing </button>
@@ -68,7 +63,8 @@ export default class Example extends BaseComponent {
 					handleCheckBoxChange={ checkBoxHandler }
 					handleSliderDragChange={ sliderDragChangeHandler }
 					handleSliderDragEnd={ sliderDragEndHandler }
-					structList={ structList } />
+					structList={ structList }
+					valueState={ this.state }/>
 			</div>
 		);
 	}

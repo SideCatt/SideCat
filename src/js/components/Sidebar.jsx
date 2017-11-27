@@ -35,14 +35,18 @@ class Sidebar extends BaseComponent {
 	 * @returns {Slider}                 Returns Slider Component
 	 */
 	renderSlider(structItem) {
-		const { handleSliderDragChange, handleSliderDragEnd } = this.props;
+		const {
+			handleSliderDragChange,
+			handleSliderDragEnd,
+			valueState
+		} = this.props;
 		const { dataStructure } = structItem;
 		const {
 			max,
 			min,
-			name,
-			value
+			name
 		} = dataStructure;
+		const value = valueState[ name ];
 
 		return (
 			<Slider
