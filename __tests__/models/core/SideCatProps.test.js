@@ -1,5 +1,15 @@
 /* global test, expect */
 import SideCatProps from 'js/models/core/SideCatProps';
+import CategoryModel from 'js/models/CategoryModel';
+
+class TestClass {
+	constructor() {
+		this.suh = 'dude';
+	}
+}
+
+const testCategory = new CategoryModel({ label: 'suh', value: 'dude', children: null });
+const testCategoryChildren = new CategoryModel({ label: 'suh', value: 'dude', children: [ testCategory ] });
 
 test('SideCatProps should be able to validate primitive type plus object and array', () => {
 	expect(SideCatProps.array.validate([])).toBe(true);
@@ -8,6 +18,12 @@ test('SideCatProps should be able to validate primitive type plus object and arr
 	expect(SideCatProps.number.validate(10)).toBe(true);
 	expect(SideCatProps.object.validate({})).toBe(true);
 	expect(SideCatProps.string.validate('')).toBe(true);
+	expect(SideCatProps.oneOf(SideCatProps.number, SideCatProps.string).validate('')).toBe(true);
+	expect(SideCatProps.oneOf(SideCatProps.number, SideCatProps.string).validate(1)).toBe(true);
+	expect(SideCatProps.instanceOf(TestClass).validate(new TestClass())).toBe(true);
+	expect(SideCatProps.arrayOf(SideCatProps.number).validate([ 1, 2, 3, 4 ])).toBe(true);
+	expect(SideCatProps.arrayOf(CategoryModel).validate([ testCategory ])).toBe(true);
+	expect(SideCatProps.arrayOf(CategoryModel).validate([ testCategoryChildren ])).toBe(true);
 
 	expect(SideCatProps.array.validate(0)).toBe(false);
 	expect(SideCatProps.bool.validate('true')).toBe(false);
@@ -15,6 +31,10 @@ test('SideCatProps should be able to validate primitive type plus object and arr
 	expect(SideCatProps.number.validate([])).toBe(false);
 	expect(SideCatProps.object.validate(4.3)).toBe(false);
 	expect(SideCatProps.string.validate(null)).toBe(false);
+	expect(SideCatProps.oneOf(SideCatProps.number, SideCatProps.string).validate({})).toBe(false);
+	expect(SideCatProps.oneOf(SideCatProps.number, SideCatProps.string).validate([])).toBe(false);
+	expect(SideCatProps.instanceOf(TestClass).validate({ suh: 'dude' })).toBe(false);
+	expect(SideCatProps.arrayOf(SideCatProps.number).validate([ 'suh', 'dude' ])).toBe(false);
 });
 
 test('SideCatProps should be able to include Optional types', () => {

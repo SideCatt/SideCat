@@ -1,71 +1,39 @@
 /* eslint-disable no-use-before-define */
 
-import isNil from 'ramda/src/isNil';
-import getType from 'ramda/src/type';
 import { TYPES } from 'js/constants/TYPES';
-
-/**
- * Creates a new Type class with the ability to validate value of its type
- * @class
- * @property {string} type Name of type
- */
-class Type {
-	constructor(type) {
-		this.type = type;
-	}
-
-	/**
-	 * Get type name
-	 * @returns {string} Name of type
-	 */
-	getType() {
-		return this.type;
-	}
-
-	/**
-	 * Validate the value against its type. Returns true if matched
-	 * @param   {any}     value Value to be compared
-	 * @returns {boolean}       Indicator if the types match
-	 */
-	validate(value) {
-		return getType(value) === this.type;
-	}
-
-	/**
-	 * Returns decorated OptionalType object to check for nil values
-	 * @returns {OptionalType} OptionalType object
-	 */
-	get isOptional() {
-		return new OptionalType(this.type);
-	}
-}
-
-/**
- * Decorated OptionalType class to return true for nil values
- * @class
- * @property {string} type Name of type
- */
-class OptionalType extends Type {
-	constructor(type) {
-		super(type);
-	}
-
-	validate(value) {
-		return isNil(value)
-			? true
-			: Type.prototype.validate.call(this, value);
-	}
-}
+import ArrayOf from 'js/models/core/proptypes/ArrayOf';
+import InstanceOf from 'js/models/core/proptypes/InstanceOf';
+import OneOfType from 'js/models/core/proptypes/OneOfType';
+import ramdaGetType from 'ramda/src/type';
+import Type from 'js/models/core/proptypes/Type';
 
 /**
  * Return a frozen Type object
  * @param   {string} type Name of type
  * @returns {Type}        Frozen Type object from the given param
  */
+function getArrayValidator(types) {
+	const validators = new ArrayOf(types);
+
+	return Object.freeze(validators);
+}
+
 function getTypeValidator(type) {
 	const typeValidator = new Type(type);
 
 	return Object.freeze(typeValidator);
+}
+
+function getInstanceValidator(instance) {
+	const typeValidator = new InstanceOf(instance);
+
+	return Object.freeze(typeValidator);
+}
+
+function getMultipleValidators(...types) {
+	const validators = new OneOfType(types);
+
+	return Object.freeze(validators);
 }
 
 const SideCatProps = {};
@@ -86,7 +54,7 @@ SideCatProps.checkPropTypes = function (structure, dataStructure, modelName) {
 			return true;
 		}
 
-		const actualType = getType(value);
+		const actualType = ramdaGetType(value);
 		const expectedType = validator.getType();
 
 		throw new Error(`Invalid \`${modelName}\` structure: type ${actualType} supplied to \`${propKey}\`, expected ${expectedType}.`);
@@ -105,12 +73,15 @@ SideCatProps.defineStructure = function (modelClass, structure) {
 };
 
 // Define types
-SideCatProps.any = () => true;
+SideCatProps.any = { validate: () => true };
 SideCatProps.array = getTypeValidator(TYPES.ARRAY);
 SideCatProps.bool = getTypeValidator(TYPES.BOOL);
 SideCatProps.func = getTypeValidator(TYPES.FUNC);
 SideCatProps.number = getTypeValidator(TYPES.NUMBER);
 SideCatProps.object = getTypeValidator(TYPES.OBJECT);
 SideCatProps.string = getTypeValidator(TYPES.STRING);
+SideCatProps.instanceOf = getInstanceValidator;
+SideCatProps.oneOf = getMultipleValidators;
+SideCatProps.arrayOf = getArrayValidator;
 
 export default Object.freeze(SideCatProps);
