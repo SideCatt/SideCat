@@ -1,7 +1,7 @@
 import BaseComponent from 'js/extensions/BaseComponent';
 import Categories from 'js/components/sideModules/Categories';
 import Checkbox from 'js/components/sideModules/CheckBox';
-import Models from 'js/models';
+import Models from 'js/models/index';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { sideCatClassnames } from 'js/lib/css';
@@ -115,7 +115,8 @@ Sidebar.propTypes = {
 	handleCheckBoxChange: PropTypes.func,
 	handleSliderDragChange: PropTypes.func,
 	handleSliderDragEnd: PropTypes.func,
-	structList: PropTypes.array
+	structList: PropTypes.array,
+	valueState: PropTypes.object
 };
 
 export default Sidebar;
