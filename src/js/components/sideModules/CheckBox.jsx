@@ -27,14 +27,15 @@ class CheckBox extends BaseComponent {
 	}
 
 	handleChange(event) {
-		const { onChange } = this.props;
+		const { onChange, value } = this.props;
 		const { checked } = this.state;
 		const nextChecked = !checked;
+		const val = nextChecked && value ? value : nextChecked;
 
 		this.setState({ checked: nextChecked });
 
 		if (onChange) {
-			onChange(nextChecked, event);
+			onChange(val, event);
 		}
 	}
 
@@ -74,11 +75,13 @@ class CheckBox extends BaseComponent {
  * @property {boolean}  disabled  Indicator to if checkbox is disabled
  * @property {string}   label     Label of checkbox
  * @property {function} onChange  On change handler
+ * @property {*}        value     Value that will be passed along when the checkbox is checked. Defaults to boolean
  */
 CheckBox.propTypes = {
 	checked: PropTypes.bool,
 	disabled: PropTypes.bool,
 	label: PropTypes.string,
+	value: PropTypes.any,
 	onChange: PropTypes.func
 };
 

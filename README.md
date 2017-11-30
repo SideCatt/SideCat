@@ -19,13 +19,15 @@ Once you have pulled down the project you must install dependencies via npm.  Th
 #### Sidebar
 **Props:**
 
-| Name                    | Type               | Description                                                     |
-| ----------------------- | ------------------ | --------------------------------------------------------------- |
-| handleCheckBoxChange    | function           | Event handler for checkbox change events                        |
-| handleSliderDragChange  | function           | Event handler for changing the slider value                     |
-| handleSliderDragEnd     | function           | Event handler for the end of a slider drag                      |
-| structList              | array              | Ordered list of data models present for the sidebar             |
-| valueState              | object             | Name keyed value state for the data models in sidebar           |
+| Name                    | Type               | Description                                                                 |
+| ----------------------- | ------------------ | --------------------------------------------------------------------------- |
+| onCategoryChange        | function           | Event handler for cateogory change events                                   |
+| onChange                | function           | Event handler for change events coming from any components inside `Sidebar` |
+| onCheckBoxChange        | function           | Event handler for checkbox change events                                    |
+| onSliderDragChange      | function           | Event handler for changing the slider value                                 |
+| onSliderDragEnd         | function           | Event handler for the end of a slider drag                                  |
+| structList              | array              | Ordered list of data models present for the sidebar                         |
+| valueState              | object             | Name keyed value state for the data models in sidebar                       |
 
 ### Models
 
@@ -133,7 +135,7 @@ const structList = [
 	myCheckbox,
 	mySlider,
 	mySliderTwo
-	];
+];
 ```
 
 The corresponding stateful values should be passed similar to react state with name corresponding to property name.
@@ -144,6 +146,57 @@ const myState = {
 	bar_slider: 58,
 	bar_slider_two: 92
 };
+```
+
+Using `myStructList` and contents inside `myState`, you can generate our `Sidebar` component as following:
+```javascript
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            check_box: true,
+            bar_slider: 58,
+            bar_slider_two: 92
+        };
+    }
+    
+    render() {
+        return (
+            <Sidebar
+                structList={ myStructList }
+                valueState={ this.state }>
+        );
+    }
+}
+```
+
+You can add an `onChange` prop in `Sidebar` to handle all the emitted events coming from the changes inside the Sidebar component and bind it to your state.
+```javascript
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            check_box: true,
+            bar_slider: 58,
+            bar_slider_two: 92
+        };
+    }
+    
+    onChange(name, value) {
+        this.setState({ [ name ]: value });
+    }
+    
+    render() {
+        return (
+            <Sidebar
+                onChange={ this.onChange.bind(this) }
+                structList={ myStructList }
+                valueState={ this.state }>
+        );
+    }
+}
 ```
 
 ## Testing
