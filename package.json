@@ -8,8 +8,6 @@
   "author": "Jonathan Bruce <jbruce232@gmail.com> and Sam Chun",
   "license": "MIT",
   "files": [
-    "dist",
-    "lib",
     "src"
   ],
   "scripts": {
@@ -66,8 +64,10 @@
     "rollup": "^0.52.0",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
+    "uglify-es": "^3.2.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },

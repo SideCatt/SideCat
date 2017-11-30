@@ -1,6 +1,8 @@
 import alias from 'rollup-plugin-alias';
 import babel from 'rollup-plugin-babel';
+import { minify } from 'uglify-es';
 import path from 'path';
+import uglify from 'rollup-plugin-uglify';
 
 const srcDir = path.join(__dirname, '/src');
 
@@ -18,6 +20,7 @@ export default {
 		babel({
 			exclude: 'node_modules/**',
 			plugins: [ 'external-helpers' ]
-		})
+		}),
+		uglify({}, minify)
 	]
 };
