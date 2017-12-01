@@ -1,11 +1,14 @@
 {
-  "name": "SideCat",
-  "version": "1.0.0",
+  "name": "sidecat",
+  "version": "0.0.1",
   "description": "React generic sidebar-category library",
   "main": "es/sidecat.js",
   "module": "es/sidecat.js",
   "repository": "git@github.com:SideCatt/SideCat.git",
-  "author": "Jonathan Bruce <jbruce232@gmail.com> and Sam Chun<sanghun89@gmail.com>",
+  "authors": [
+    "Jonathan Bruce <jbruce232@gmail.com>",
+    "Sam Chun<sanghun89@gmail.com>"
+  ],
   "license": "MIT",
   "files": [
     "src"
@@ -16,6 +19,7 @@
     "jest": "jest",
     "lint": "./node_modules/.bin/eslint --plugin react --max-warnings 0 src/js/**/*.{js,jsx} __tests__/**/*.{js,jsx}",
     "lint-fix": "yarn run lint --fix",
+    "postinstall": "rollup -c",
     "test": "yarn run lint && jest"
   },
   "jest": {
@@ -38,22 +42,22 @@
     "testMatch": [
       "**/?(*.)(spec|test).js?(x)"
     ],
-	"unmockedModulePathPatterns": [
-	  "react",
-	  "react-dom",
-	  "react-addons-test-utils",
-	  "fbjs",
-	  "enzyme",
-	  "cheerio",
-	  "htmlparser2",
-	  "underscore",
-	  "lodash",
-	  "domhandler",
-	  "object.assign",
-	  "define-properties",
-	  "function-bind",
-	  "object-keys"
-	]
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-dom",
+      "react-addons-test-utils",
+      "fbjs",
+      "enzyme",
+      "cheerio",
+      "htmlparser2",
+      "underscore",
+      "lodash",
+      "domhandler",
+      "object.assign",
+      "define-properties",
+      "function-bind",
+      "object-keys"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -78,13 +82,8 @@
     "node-sass": "^4.7.1",
     "raf": "^3.4.0",
     "react-test-renderer": "^16.1.1",
-    "rollup": "^0.52.0",
-    "rollup-plugin-alias": "^1.4.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-uglify": "^2.0.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
-    "uglify-es": "^3.2.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
@@ -93,6 +92,11 @@
     "prop-types": "^15.6.0",
     "ramda": "^0.25.0",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "rollup": "^0.52.0",
+    "rollup-plugin-alias": "^1.4.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1",
+    "uglify-es": "^3.2.0"
   }
 }
