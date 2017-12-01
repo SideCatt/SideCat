@@ -4,6 +4,7 @@
 /.vscode
 /src/tests/bundle.js
 /node_modules
+/es
 package-lock.json
 .idea
 dist

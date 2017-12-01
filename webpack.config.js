@@ -1,4 +1,3 @@
-/* global require, __dirname, module */
 const devPort = 8080;
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -10,15 +9,8 @@ const webpack = require('webpack');
 
 function getVendorFileNames() {
 	const packageJson = require('./package.json');
-	const excludeArray = [
-		'rollup',
-		'rollup-plugin-alias',
-		'rollup-plugin-babel',
-		'rollup-plugin-uglify',
-		'uglify-es'
-	];
 
-	return Object.keys(packageJson.dependencies).filter((value) => !excludeArray.includes(value));
+	return Object.keys(packageJson.dependencies);
 }
 
 module.exports = {
