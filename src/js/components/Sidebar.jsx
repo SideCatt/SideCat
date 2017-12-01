@@ -18,15 +18,16 @@ class Sidebar extends BaseComponent {
 	 * @returns {Categories}                 Returns Categories Component
 	 */
 	renderCategories(structItem) {
-		const { handleCategoryChange } = this.props;
+		const { onCategoryChange, onChange } = this.props;
 		const { active, name, categories } = structItem.serialize();
+		const changeFunc = onCategoryChange || onChange;
 
 		return (
 			<Categories
 				key={ name }
 				active={ active }
 				categories={ categories }
-				onChange={ this.bindParams(handleCategoryChange, name)} />
+				onChange={ this.bindParams(changeFunc, name)} />
 		);
 	}
 
@@ -36,14 +37,16 @@ class Sidebar extends BaseComponent {
 	 * @returns {Checkbox}                 Returns CheckBox Component
 	 */
 	renderCheckBox(structItem) {
-		const { handleCheckBoxChange } = this.props;
-		const { label, name } = structItem.serialize();
+		const { onChange, onCheckBoxChange } = this.props;
+		const { label, name, value } = structItem.serialize();
+		const changeFunc = onCheckBoxChange || onChange;
 
 		return (
 			<Checkbox
 				key={ name }
 				label={ label }
-				onChange={ this.bindParams(handleCheckBoxChange, name) } />
+				value={ value }
+				onChange={ this.bindParams(changeFunc, name) } />
 		);
 	}
 
@@ -54,8 +57,9 @@ class Sidebar extends BaseComponent {
 	 */
 	renderSlider(structItem) {
 		const {
-			handleSliderDragChange,
-			handleSliderDragEnd,
+			onChange,
+			onSliderDragChange,
+			onSliderDragEnd,
 			valueState
 		} = this.props;
 		const {
@@ -64,14 +68,15 @@ class Sidebar extends BaseComponent {
 			name
 		} = structItem.serialize();
 		const value = valueState[ name ];
+		const endFunc = onSliderDragEnd || onChange;
 
 		return (
 			<Slider
 				key={ name }
 				max={ max }
 				min={ min }
-				onDragChange={ this.bindParams(handleSliderDragChange, name) }
-				onDragEnd={ this.bindParams(handleSliderDragEnd, name) }
+				onDragChange={ this.bindParams(onSliderDragChange, name) }
+				onDragEnd={ this.bindParams(endFunc, name) }
 				value={ value } />
 		);
 	}
@@ -106,17 +111,25 @@ class Sidebar extends BaseComponent {
 
 /**
  * propTypes definition
- * @property (function} handleCheckBoxChange   Handle checkbox change events
- * @property (function} handleSliderDragChange Handle slider drag change events
- * @property (function} handleSliderDragEnd    Handle slider drag end events
- * @property {array}    structList             Order of sidebar components
+ * @property {function} onCategoryChange   Handle category change events
+ * @property {function} onChange           Handle change event for any input changes
+ * @property {function} onCheckBoxChange   Handle checkbox change events
+ * @property {function} onSliderDragChange Handle slider drag change events
+ * @property {function} onSliderDragEnd    Handle slider drag end events
+ * @property {array}    structList         Order of sidebar components
  */
 Sidebar.propTypes = {
-	handleCheckBoxChange: PropTypes.func,
-	handleSliderDragChange: PropTypes.func,
-	handleSliderDragEnd: PropTypes.func,
-	structList: PropTypes.array,
+	onCategoryChange: PropTypes.func,
+	onChange: PropTypes.func,
+	onCheckBoxChange: PropTypes.func,
+	onSliderDragChange: PropTypes.func,
+	onSliderDragEnd: PropTypes.func,
+	structList: PropTypes.array.isRequired,
 	valueState: PropTypes.object
+};
+
+Sidebar.defaultProps = {
+	valueState: {}
 };
 
 export default Sidebar;

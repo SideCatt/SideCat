@@ -25,10 +25,12 @@ class CheckBoxModel extends Model {
  * propTypes Definition
  * @type {string} label Label of checkbox
  * @type {string} name  Name of checkbox
+ * @type {*}      value Value specified for the checkbox
  */
 SideCatProps.defineStructure(CheckBoxModel, {
 	label: SideCatProps.string,
-	name: SideCatProps.string
+	name: SideCatProps.string,
+	value: SideCatProps.any
 });
 
 export default CheckBoxModel;
