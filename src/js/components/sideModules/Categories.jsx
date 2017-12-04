@@ -49,7 +49,9 @@ class Categories extends BaseComponent {
 				className={ categoryClass }
 				key={ category.value }
 				onClick={ this.bindParams(this.handleClick, value) }>
-				{ label }
+				<div className='label'>
+					{ label }
+				</div>
 				{
 					children && children.map((cat) => this.renderCategory(cat))
 				}
