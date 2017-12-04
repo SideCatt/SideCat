@@ -27,7 +27,16 @@ class CheckBox extends BaseComponent {
 	}
 
 	handleChange(event) {
-		const { onChange, value } = this.props;
+		const {
+			disabled,
+			onChange,
+			value
+		} = this.props;
+
+		if (disabled) {
+			return;
+		}
+
 		const { checked } = this.state;
 		const nextChecked = !checked;
 		const val = nextChecked && value ? value : nextChecked;
@@ -37,6 +46,16 @@ class CheckBox extends BaseComponent {
 		if (onChange) {
 			onChange(val, event);
 		}
+	}
+
+	renderCheckInput() {
+		const { checked } = this.state;
+
+		return (
+			<div className='checkbox' onClick={ this.handleChange }>
+				{ checked && <div className='check' /> }
+			</div>
+		);
 	}
 
 	renderLabel() {
@@ -57,12 +76,7 @@ class CheckBox extends BaseComponent {
 
 		return (
 			<div className={ checkboxClassnames }>
-				<input
-					checked={ checked }
-					disabled={ disabled }
-					onChange={ this.handleChange }
-					type='checkbox' />
-
+				{ this.renderCheckInput() }
 				{ this.renderLabel() }
 			</div>
 		);

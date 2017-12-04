@@ -49,11 +49,9 @@ exports[`Sidebar should correctly render components based on structList 1`] = `
   <div
     className="sidecat-checkbox"
   >
-    <input
-      checked={false}
-      disabled={false}
-      onChange={[Function]}
-      type="checkbox"
+    <div
+      className="checkbox"
+      onClick={[Function]}
     />
     <label>
       Bar

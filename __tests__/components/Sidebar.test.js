@@ -71,7 +71,7 @@ test('Sidebar\'s prop "onChange" should be able to fire on any events changing f
 
 	const testComponent = mount(<MockComponent/>);
 
-	testComponent.find('input[type="checkbox"]').simulate('change', { target: { checked: true } });
+	testComponent.find('div.checkbox').simulate('click');
 
 	expect(testComponent.state('bar1')).toEqual('barrr');
 });
