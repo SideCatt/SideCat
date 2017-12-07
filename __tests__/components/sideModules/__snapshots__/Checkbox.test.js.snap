@@ -4,12 +4,14 @@ exports[`Checkbox changes the class when it is checked by default 1`] = `
 <div
   className="sidecat-checkbox checked"
 >
-  <input
-    checked={true}
-    disabled={false}
-    onChange={[Function]}
-    type="checkbox"
-  />
+  <div
+    className="checkbox"
+    onClick={[Function]}
+  >
+    <div
+      className="check"
+    />
+  </div>
   <label>
     foo
   </label>
