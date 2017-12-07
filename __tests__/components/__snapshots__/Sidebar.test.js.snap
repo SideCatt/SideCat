@@ -11,7 +11,11 @@ exports[`Sidebar should correctly render components based on structList 1`] = `
       className="sidecat-category"
       onClick={[Function]}
     >
-      Cat One
+      <div
+        className="label"
+      >
+        Cat One
+      </div>
     </div>
   </div>
   <div

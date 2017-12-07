@@ -1,6 +1,6 @@
 {
   "name": "sidecat",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "React generic sidebar-category library",
   "main": "es/sidecat.js",
   "module": "es/sidecat.js",
